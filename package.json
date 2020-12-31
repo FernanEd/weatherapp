@@ -1,0 +1,25 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "An app to check the weather",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FernanEd/weatherapp.git"
+  },
+  "keywords": [],
+  "author": "Fernando_Ed <fernaned.bm@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FernanEd/weatherapp/issues"
+  },
+  "homepage": "https://github.com/FernanEd/weatherapp#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  }
+}
