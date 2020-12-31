@@ -17,7 +17,9 @@
     "url": "https://github.com/FernanEd/weatherapp/issues"
   },
   "homepage": "https://github.com/FernanEd/weatherapp#readme",
-  "dependencies": {},
+  "dependencies": {
+    "animejs": "^3.2.1"
+  },
   "devDependencies": {
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
