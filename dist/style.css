@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300&display=swap');
 :root {
   --darkgreen: #30505c;
   --green: #45b29d;
@@ -24,7 +23,7 @@ a:hover {
 
 body {
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 1.5em;
   background-color: var(--light);
 }
@@ -64,7 +63,7 @@ body {
   border-radius: 50%;
   outline: 0;
 
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 1.5em;
 
   width: 1.5em;
@@ -97,7 +96,7 @@ body {
   border: 0;
   border-bottom: 2px solid var(--dark);
 
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 1.5em;
 
   text-align: center;
@@ -129,6 +128,102 @@ footer p {
   margin: 0;
 }
 
+#result-content {
+  padding: 2em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-radius: 2em;
+
+  gap: 1em;
+
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+#result-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+#result-temp {
+  font-size: 4em;
+}
+
+.summary-item {
+  flex: 1;
+  text-align: center;
+}
+
+.summary-item:last-child {
+  border-left: 2px solid var(--dark);
+}
+
+#result-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+}
+
+.summary-item h1 {
+  margin: 0;
+}
+
+.summary-item p {
+  margin: 0;
+}
+
+.details-item h2 {
+  color: var(--green);
+  font-size: 1em;
+  margin: 0;
+}
+
+.details-item p {
+  margin: 0;
+}
+
+.summary-item:first-child {
+  position: relative;
+}
+
+#convert-units-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  background-color: var(--green);
+  color: var(--light);
+  border: 0;
+  border-radius: 50%;
+  outline: 0;
+
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1em;
+
+  width: 1em;
+  height: 1em;
+  padding: 1em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+#convert-units-btn:hover {
+  filter: brightness(1.2);
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 1em;
@@ -138,7 +233,8 @@ footer p {
     height: calc(100vh - 5.5em);
   }
 
-  #main-screen {
+  #main-screen,
+  #result-screen {
     width: 80%;
   }
 }
@@ -150,5 +246,14 @@ footer p {
 
   #search-input {
     font-size: 1.25em;
+  }
+
+  #result-summary {
+    flex-direction: column;
+  }
+
+  .summary-item:last-child {
+    border: 0;
+    border-top: 2px solid var(--darkgreen);
   }
 }
