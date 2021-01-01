@@ -183,12 +183,8 @@ footer p {
   padding: 1em;
 }
 
-.summary-item h1 {
-  margin: 0;
-}
-
-.summary-item p {
-  margin: 0;
+#result-weather {
+  font-size: 3.5em;
 }
 
 .summary-item:first-child {
