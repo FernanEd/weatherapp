@@ -102,5 +102,6 @@ const convertBtn = document.querySelector('#convert-units-btn');
 convertBtn.addEventListener('click', (e) => {
   convertTemps();
   //Switch button text
+  console.log('mmm');
   convertBtn.innerText = convertBtn.innerText == 'F°' ? 'C°' : 'F°';
 });

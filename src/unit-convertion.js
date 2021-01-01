@@ -8,7 +8,10 @@ let feelingTemp = document.querySelector('#result-feeling');
 let tempsElem = [temp, minTemp, maxTemp, feelingTemp];
 
 function convertTemps() {
-  let temps = tempsElem.map((temp) => temp.innerText.match(/\d+.?\d+/)[0]);
+  let temps = tempsElem.map(
+    (temp) => temp.innerText.match(/-?[\d\.]+(?=[°])/)[0]
+  );
+  console.log(temps);
   tempsElem.forEach((tempElem, index) => {
     let convertedTemp = convertTemp(temps[index]);
     tempElem.innerText = `${Math.round(convertedTemp * 10) / 10}°`;
