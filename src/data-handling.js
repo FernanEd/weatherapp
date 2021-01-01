@@ -64,6 +64,7 @@ function fillResult({
   }
 }
 
+//HTTPS
 async function weatherRequest(city) {
   try {
     let response = await fetch(
