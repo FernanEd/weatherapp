@@ -67,7 +67,7 @@ function fillResult({
 async function weatherRequest(city) {
   try {
     let response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
     );
     let data = await response.json();
     return data;
