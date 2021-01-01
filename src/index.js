@@ -1,5 +1,6 @@
 import anime from 'animejs/lib/anime.es';
-import { API_KEY as key } from './apikey';
+
+import { weatherRequest, fillResult, filterData } from './data-handling';
 
 console.log('yessssss');
 
@@ -21,25 +22,32 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') submitHandler();
 });
 
-anime({
-  targets: mainScreen,
-  opacity: [0, 1],
-  translateY: [-20, 0],
-  duration: 3000,
+window.addEventListener('load', (e) => {
+  //Animate main screen
+  anime({
+    targets: mainScreen,
+    opacity: [0, 1],
+    translateY: [-10, 0],
+    duration: 3000,
+  });
 });
 
-function submitHandler() {
+async function submitHandler() {
   if (validateInput()) {
-    // Dissapear the mainscreen on search
-    anime({
+    let mainScreenAnimation = await anime({
       targets: mainScreen,
       opacity: [1, 0],
       duration: 3000,
     });
-    anime({
+
+    let fetchWeatherData = await weatherRequest(cityInput.value).then((data) =>
+      fillResult(filterData(data))
+    );
+
+    let resultScreenAnimation = anime({
       targets: resultScreen,
       opacity: [0, 1],
-      translateY: [-20, 0],
+      translateY: [-10, 0],
       duration: 3000,
       begin: () => {
         mainScreen.style.display = 'none';
@@ -47,9 +55,9 @@ function submitHandler() {
       },
     });
   } else {
-    anime({
+    let inputAnimation = await anime({
       targets: cityInput,
-      translateY: [-10, 0],
+      translateX: [-20, 0],
     });
   }
 }

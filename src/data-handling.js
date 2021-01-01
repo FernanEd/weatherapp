@@ -1,3 +1,5 @@
+import { API_KEY as key } from './apikey';
+
 let currentUnit = 0; // 0 - Celsius 1 - Fahrenheit
 
 function parseTemp(temp) {
@@ -7,8 +9,6 @@ function parseTemp(temp) {
 }
 
 function filterData(weatherData) {
-  console.log(weatherData);
-
   let city = weatherData.name;
   let country = weatherData.sys.country;
   let place = `${city}, ${country}`;
@@ -76,4 +76,4 @@ async function weatherRequest(city) {
   }
 }
 
-export { weatherRequest };
+export { weatherRequest, fillResult, filterData };
