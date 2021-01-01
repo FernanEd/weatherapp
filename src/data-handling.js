@@ -77,4 +77,4 @@ async function weatherRequest(city) {
   }
 }
 
-export { weatherRequest, fillResult, filterData };
+export { weatherRequest, fillResult, filterData, parseTemp, currentUnit };

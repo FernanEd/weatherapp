@@ -1,8 +1,13 @@
 import anime from 'animejs/lib/anime.es';
 
-import { weatherRequest, fillResult, filterData } from './data-handling';
+import {
+  weatherRequest,
+  fillResult,
+  filterData,
+  currentUnit,
+} from './data-handling';
 
-console.log('yessssss');
+import { convertTemps } from './unit-convertion';
 
 let userCity = localStorage.getItem('user_city') || undefined;
 
@@ -91,6 +96,11 @@ async function resetHandler() {
   });
 }
 
-(() => {
-  const convertBtn = document.querySelector('#convert-units-btn');
-})();
+//Converting temps
+
+const convertBtn = document.querySelector('#convert-units-btn');
+convertBtn.addEventListener('click', (e) => {
+  convertTemps();
+  //Switch button text
+  convertBtn.innerText = convertBtn.innerText == 'F°' ? 'C°' : 'F°';
+});
