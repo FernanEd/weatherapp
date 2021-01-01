@@ -6,21 +6,8 @@ console.log('yessssss');
 
 let userCity = localStorage.getItem('user_city') || undefined;
 
-/*
-if(userCity){
-    weatherRequest
-}
-*/
-
 let mainScreen = document.querySelector('#main-screen');
 let resultScreen = document.querySelector('#result-screen');
-let cityInput = document.querySelector('#search-input');
-let searchBtn = document.querySelector('#search-btn');
-searchBtn.addEventListener('click', submitHandler);
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') submitHandler();
-});
 
 window.addEventListener('load', (e) => {
   //Animate main screen
@@ -32,28 +19,44 @@ window.addEventListener('load', (e) => {
   });
 });
 
+let cityInput = document.querySelector('#search-input');
+let searchBtn = document.querySelector('#search-btn');
+searchBtn.addEventListener('click', submitHandler);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') submitHandler();
+});
+
+let errorMsg = document.querySelector('#error');
+
 async function submitHandler() {
   if (validateInput()) {
-    let mainScreenAnimation = await anime({
-      targets: mainScreen,
-      opacity: [1, 0],
-      duration: 3000,
-    });
+    try {
+      let fetchWeatherData = await weatherRequest(
+        cityInput.value
+      ).then((data) => fillResult(filterData(data)));
 
-    let fetchWeatherData = await weatherRequest(cityInput.value).then((data) =>
-      fillResult(filterData(data))
-    );
-
-    let resultScreenAnimation = anime({
-      targets: resultScreen,
-      opacity: [0, 1],
-      translateY: [-10, 0],
-      duration: 3000,
-      begin: () => {
-        mainScreen.style.display = 'none';
-        resultScreen.style.display = 'block';
-      },
-    });
+      let resultScreenAnimation = anime({
+        targets: resultScreen,
+        opacity: [0, 1],
+        translateY: [-10, 0],
+        duration: 3000,
+        begin: () => {
+          mainScreen.style.display = 'none';
+          resultScreen.style.display = 'block';
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      errorMsg.innerText = 'No location found!';
+      anime({
+        targets: errorMsg,
+        opacity: [0, 1],
+        begin: () => {
+          errorMsg.style.display = 'block';
+        },
+      });
+    }
   } else {
     let inputAnimation = await anime({
       targets: cityInput,
@@ -64,6 +67,28 @@ async function submitHandler() {
 
 function validateInput() {
   return cityInput.value !== '';
+}
+
+//Return
+
+let returnBtn = document.querySelector('#return-btn');
+returnBtn.addEventListener('click', resetHandler);
+
+async function resetHandler() {
+  //Clean input
+  cityInput.value = '';
+  errorMsg.style.display = 'none';
+
+  let mainScreenAnimation = anime({
+    targets: mainScreen,
+    opacity: [0, 1],
+    translateY: [-10, 0],
+    duration: 3000,
+    begin: () => {
+      mainScreen.style.display = 'block';
+      resultScreen.style.display = 'none';
+    },
+  });
 }
 
 (() => {
